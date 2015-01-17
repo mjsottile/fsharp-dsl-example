@@ -1,4 +1,8 @@
-﻿open System
+﻿//
+// derived from code at : https://github.com/c4fsharp/Dojo-Fractal-Forest
+//
+
+open System
 open System.Drawing
 open System.Windows.Forms
 
