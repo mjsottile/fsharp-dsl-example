@@ -18,7 +18,7 @@ let inline (./) e1 e2 = BinOp (BDivide,e1,e2)
 let neg e1 = UnOp (UNeg,e1)
 
 //
-// simple functiosn to lift constants into the AST as Constant nodes.
+// simple function to lift constants into the AST as Constant nodes.
 //
 let fval (x : float) = Constant x
 
