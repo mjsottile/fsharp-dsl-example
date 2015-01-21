@@ -61,27 +61,56 @@
 
 #### EDSLs
 
-- All but the syntax.
-- Embedding requires working out all of the details.
-- Moving to standalone is an exercise in parsers.
+- All but the syntax and *syntax* error reporting.
+- Embedding requires working out all of the other details.
+
+- Syntax is an exercise in parsing.
+- Error reporting is a subtler, trickier matter.
+
+---
+
+#### EDSLs and error reporting
+
+- EDSL resides in host language.
+  - Syntax errors are host language syntax errors
+
+- Confusing to DSL users to see host language detail
+  - Especially if sugar provided by DSL intends to hide host
 
 ***
 
 ### Why is FP so nice for (E)DSLs?
 
-- Rich, extensible type systems w/ H-M type inference
+- Rich type systems
+- Very good symbolic programming facilities
+- Lots of runtime and language infrastructure for free
+
+---
+
+#### Type systems
+
+- Rich, extensible type systems
+  - H-M type inference
   - Not the same as type "inferrence" like C++ auto keyword
-- ML-derivatives are very good at symbolic programming
-  - Manipulation of structures
-  - Lots of syntactic sugar = very expressive, very compact
-  - Strong types = keep manipulations safe
-- Languages provide lots for free
-  - Closures 
-  - Memory management + GC
-  - First-class functions
-  - Pattern matching
 
 > Rich, strong type system === lightweight formal verification for free!
+
+---
+
+#### Symbolic programming
+
+- Manipulation of structures
+- Lots of syntactic sugar = very expressive, very compact
+- Strong types = keep manipulations safe
+
+---
+
+#### Infrastructure for free
+
+- Closures 
+- Memory management + GC
+- First-class functions
+- Pattern matching
 
 ***
 
