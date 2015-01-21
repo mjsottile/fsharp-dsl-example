@@ -11,11 +11,7 @@
 #load "CompExpr.fs"
 #endif
 
-open AST
-open AST_Utils
 open Operators
-open Traversals
-open Interpreter
 open CompExpr
 
 let tester = environment {
