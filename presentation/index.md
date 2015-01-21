@@ -92,8 +92,9 @@
 - Discriminated unions (aka, algebraic data types)
 - Pattern matching
 - Infix operators
-- Currying
 - Computation Expressions
+
+Others worth noting: active patterns, code quotations.
 
 ---
 
@@ -143,12 +144,6 @@
 
 ---
 
-#### Currying
-
-Write me
-
----
-
 #### Computation expressions
 
     let env = newEnv()
@@ -165,10 +160,17 @@ Write me
 
 #### Computation expressions
 
-    let env = newEnv {
-      "x" <<- 1.0;
-      "y" <<- 2.0;
+    let tester = environment {
+      let! a = newvar "a" 2.7 
+      let! b = newvar "b" 42.0
+      let! x = newvar "x" 6.
+      let! y = newvar "y" 7.
+
+      let! pi = newconst 3.1415
+
+      return pi .* ((a .+ b) ./ (x .* y))
     }
+
 
 - That is much cleaner, eh?
 
@@ -185,6 +187,23 @@ Write me
 #### Expression DSL
 
 * https://github.com/mjsottile/fsharp-dsl-example
+
+* Organized as:
+  * AST.fs : The AST nodes
+  * AST_Utils.fs : Helpers (e.g., pretty printer)
+  * Operators.fs : Things to operate on the AST.
+  * Traversals.fs : Things to traverse and manipulate the AST.
+  * Interpreter.fs : Interpreter for AST structures with environments.
+  * CompExpr.fs : Computational expression support code.
+
+* Demonstrated via:
+  * Expressions.fsx : Basic work with ASTs
+  * Sugar1.fsx : Working with interpreter and introducing some syntactic sugar
+  * Sugar2.fsx : More syntactic sugar via computation expressions.
+
+---
+
+#### Expression DSL : Exercises
 
 * Exercises (in order of estimated complexity):
   * *Extend AST*: represent other nodes (sqrt, sin, cos, etc..)
