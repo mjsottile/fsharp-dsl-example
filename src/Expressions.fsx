@@ -175,3 +175,51 @@ let test3 =
 // up the variable declarations as well
 //
 
+// see: http://www.navision-blog.de/2009/10/23/using-monads-in-fsharp-part-i-the-state-monad/
+
+let (>>=) x f = fun s0 -> let a,s = x s0 in f a s
+let returnS a = fun s -> a,s
+
+type StateBuilder() =
+  member m.Bind(x, f) = x >>= f
+  member m.Return a = returnS a
+
+let state = new StateBuilder()
+let getState = (fun s -> s, s)
+let setState s = (fun _ -> (),s)
+
+// custom stuff layered on top of state
+let newvar v x = state {
+  let vv = Variable v
+  let vv2 = (v, fval x)
+  let! s = getState
+  do! setState (vv2::s)
+  return vv
+  }
+
+let newconst x = state {
+  let v = Constant x
+  return v
+  }
+
+let (!!>) x y = newvar x y
+  
+let Execute m s = m s
+
+let menv = state
+
+let envM me = let expression,environment = Execute me []
+              let env = mkenv environment
+              (pretty expression, interpret env expression)
+
+// put it together!
+
+let tester_m = menv {
+  let! a = newvar "a" 2.7 
+  let! b = newvar "b" 3.14
+  let! x = newvar "x" 6.
+  let! y = newvar "y" 7.
+  
+  return (a .+ b) ./ (x .* y)
+  }
+
