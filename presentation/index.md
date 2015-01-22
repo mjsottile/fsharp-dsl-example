@@ -1,6 +1,6 @@
-﻿- title : FsReveal
-- description : Introduction to FsReveal
-- author : Karlkim Suwanmongkol
+﻿- title : DSLs in FSharp
+- description : DSLs in FSharp
+- author : Matthew Sottile
 - theme : night
 - transition : default
 
